@@ -1,0 +1,55 @@
+{% extends 'baseB.html.twig' %}
+
+{% block body %}
+	<style>
+		footer {
+			background-color: transparent;
+			padding: 20px 0;
+			text-align: relative;
+			position: relative;
+			bottom: 0;
+			width: 100%;
+		}
+	</style>
+	<div class="container">
+		<h1>Cours index</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Duree</th>
+					<th>Categorie</th>
+					<th>Prix</th>
+					<th>Nbplace</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for cour in cours %}
+					<tr>
+						<td>{{ cour.id }}</td>
+						<td>{{ cour.titre }}</td>
+						<td>{{ cour.description }}</td>
+						<td>{{ cour.duree }}</td>
+						<td>{{ cour.categorie }}</td>
+						<td>{{ cour.prix }}</td>
+						<td>{{ cour.nbplace }}</td>
+						<td>
+							<a href="{{ path('app_coursb_show', {'id': cour.id}) }}">show</a>
+							<a href="{{ path('app_coursb_edit', {'id': cour.id}) }}">edit</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="8">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_coursb_new') }}">Create new</a>
+	</div>
+{% endblock %}

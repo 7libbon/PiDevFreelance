@@ -1,0 +1,10 @@
+{% extends 'baseB.html.twig' %}
+
+{% block body %}
+	<h1>Edit Cours</h1>
+
+	{{ include('coursb/_form.html.twig', {'button_label': 'New'}) }}
+
+	<a href="{{ path('app_coursb_index') }}">back to list</a>
+
+{% endblock %}

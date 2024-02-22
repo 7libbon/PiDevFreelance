@@ -58,10 +58,9 @@
 		button:hover {
 			background-color: #45a049;
 		}
-		
 	</style>
 
-	<form action="{{ path('app_cours_new') }}" method="post" id="newCoursForm" novalidate>
+	<form action="{{ path('app_cours_new') }}" method="post" id="newcoursForm" novalidate>
 		{{ form_start(form) }}
 
 		<div>
@@ -100,12 +99,7 @@
 			<small>Enter a valid duration (e.g., 5)</small>
 		</div>
 
-		<div>
-			<label for="{{ form.user.vars.id }}">User:</label>
-			{{ form_widget(form.user, {'attr': {'required': 'required', 'type': 'text', 'pattern': '^\d+$'}}) }}
-			<small>Enter a valid user (e.g., 1)</small>
-		</div>
-
+		
 		<button type="submit" class="btn">{{ button_label|default('Save') }}</button>
 
 		{{ form_end(form) }}

@@ -1,6 +1,6 @@
 {# reservation/_form.html.twig #}
 
-<form action="{{ path('app_reservation_new') }}" method="post" id="newreservationForm" novalidate>
+<form action="{{ path('app_reservationb_new') }}" method="post" id="newreservationbForm" novalidate>
 	{{ form_start(form) }}
 
 	<div>
@@ -30,7 +30,7 @@
 
 <script>
 	// Add an event listener for form submission
-document.getElementById('newreservationForm').addEventListener('submit', function (event) { // Check form validity before submission
+document.getElementById('newreservationbForm').addEventListener('submit', function (event) { // Check form validity before submission
 if (!this.checkValidity()) {
 event.preventDefault(); // Prevent form submission if not valid
 alert('Please fill in all required fields with valid input.');
