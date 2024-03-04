@@ -27,6 +27,19 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
+    #[Route('/search', name: 'app_search', methods: ['GET', 'POST'])]    
+public function searchUsers(Request $request, UserRepository $utilisateurRepository): Response
+{
+    $searchTerm = $request->request->get('search');
+    $users = $utilisateurRepository->search($searchTerm); // Implement your search logic here
+
+    return $this->render('utilisateur/index.html.twig', [
+        'utilisateurs' => $users,
+        'freelancers' => $utilisateurRepository->findByRole("Freelancer"),
+        'admins' => $utilisateurRepository->findByRole("Admin"),
+        'clients' => $utilisateurRepository->findByRole("Client"),
+    ]);
+}
     #[Route('/', name: 'app_utilisateur_index', methods: ['GET'])]
     public function index(UserRepository $utilisateurRepository): Response
     {

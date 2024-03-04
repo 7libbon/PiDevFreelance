@@ -10,7 +10,7 @@
 
       <link rel="stylesheet" href="{{asset('register/css/style.css')}}">
 
-  
+   <script src="https://hcaptcha.com/1/api.js" async defer></script>
 </head>
 
 <body>
@@ -138,6 +138,14 @@
               </li>
           
          <br>
+         <li>
+         <div
+  class="h-captcha"
+ data-sitekey="d1fec662-637c-4c4e-842f-649fdcea9415"
+ 
+  data-error-callback="onError"
+></div>
+         </li>
           <li>
           {{ form_label(registrationForm.agreeTerms, 'Terms and conditions')}}
               {{ form_widget(registrationForm.agreeTerms) }}

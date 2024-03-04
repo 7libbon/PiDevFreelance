@@ -1,6 +1,10 @@
 {% extends 'baseB.html.twig' %}
 
-
+{% block search %}
+ <form method="POST" action="{{path('app_search')}}" class="d-none d-md-flex ms-4">
+                    <input class="form-control bg-dark border-0" name="search" type="text" placeholder="Search">
+                </form>
+{% endblock %}
 
 {% block content %}
  <!-- Sale & Revenue Start -->
@@ -65,13 +69,85 @@
                                 <h6 class="mb-0">Freelancers per Client</h6>
                                 <a href="">Show All</a>
                             </div>
-                            <canvas id="salse-revenue"></canvas>
+                            <canvas id="salse-revenue" height="100" width="100"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Sales Chart End -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<script>
+  // Bar chart
+  var ctx1 = document.getElementById('worldwide-sales').getContext('2d');
+  var chart1 = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: ['Admins', 'Freelancers','Clients'],
+      datasets: [{
+        label: 'Types',
+        backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+        borderWidth: 1,
+        data: [{{ admins|length }}, {{ freelancers|length }},{{clients|length}}]
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            fontColor: '#ccc'
+          },
+          gridLines: {
+            color: '#ccc'
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            fontColor: '#ccc'
+          },
+          gridLines: {
+            color: '#ccc'
+          }
+        }]
+      },
+      legend: {
+        labels: {
+          fontColor: '#ccc'
+        }
+      }
+    }
+  });
+   var ctx2 = document.getElementById('salse-revenue').getContext('2d');
+  var chart2 = new Chart(ctx2, {
+    type: 'pie',
+    data: {
+      labels: ['Clients', 'Freelancers'],
+      datasets: [{
+        label: 'Number',
+         backgroundColor: ['#d9534f', '#f0ad4e'],
+        borderColor: '#fff',
+         data: [{{ clients|length }}, {{ freelancers|length }}]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Clients vs Freelancers',
+        fontColor: '#ccc'
+      },
+      legend: {
+        labels: {
+          fontColor: '#ccc'
+        }
+        
+      }
+      
+    },width: 50,
+    height: 50
+  });
+</script>
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
