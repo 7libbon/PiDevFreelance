@@ -6,6 +6,7 @@ use App\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CommandeType extends AbstractType
 {
@@ -15,7 +16,10 @@ class CommandeType extends AbstractType
             ->add('date')
             ->add('statut')
             ->add('prix')
-            ->add('user')
+            ->add('user', EntityType::class, [
+                'class' => 'App\Entity\User',
+                'choice_label' => 'username', 
+            ])
             ->add('service')
         ;
     }

@@ -24,4 +24,5 @@ class CartController extends AbstractController
             'commandes' => $commandeRepository->findAll(),
         ]);
     }
+
 }

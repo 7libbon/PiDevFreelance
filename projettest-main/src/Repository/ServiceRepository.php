@@ -49,15 +49,13 @@ class ServiceRepository extends ServiceEntityRepository
             ->setParameter('term', '%'.$term.'%')
             ->getQuery()
             ->getResult();
-    }
-    
-    public function sortBy(string $sortBy, string $sortOrder): array
-    {
+    }public function sortBy(string $sortBy, string $sortOrder): array
+{
     return $this->createQueryBuilder('s')
         ->orderBy('s.' . $sortBy, $sortOrder)
         ->getQuery()
         ->getResult();
-    }
+}
 //    public function findOneBySomeField($value): ?Service
 //    {
 //        return $this->createQueryBuilder('s')

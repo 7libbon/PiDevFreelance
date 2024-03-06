@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: OffreRepository::class)]
 class Offre
@@ -17,25 +18,30 @@ class Offre
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuiller saisir un nom')]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuiller saisir une introduction')]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank(message: 'Veuiller saisir une echeance')]
     private ?\DateTimeInterface $echances = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuiller saisir un statut')]
     private ?string $statut = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Veuiller saisir un prix')]
     private ?float $prix = null;
 
-    #[ORM\OneToMany(mappedBy: 'offre', targetEntity: Demande::class)]
+    #[ORM\OneToMany(mappedBy: 'offre', targetEntity: Demande::class, cascade: ['remove'])]
     private Collection $demandes;
 
     #[ORM\ManyToOne(inversedBy: 'offres')]
-    private ?User $id_user = null;
+    private ?User $idUser = null;
 
     public function __construct()
     {
@@ -139,13 +145,23 @@ class Offre
 
     public function getIdUser(): ?User
     {
-        return $this->id_user;
+        return $this->idUser;
     }
 
-    public function setIdUser(?User $id_user): static
+    public function setIdUser(?User $idUser): static
     {
-        $this->id_user = $id_user;
+        $this->idUser = $idUser;
 
         return $this;
     }
+    public function findByidUser($userId)
+    {
+        return $this->createQueryBuilder('o')
+            ->select('o.id')
+            ->andWhere('o.idUser = :userId')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

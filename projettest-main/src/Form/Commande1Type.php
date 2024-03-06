@@ -10,7 +10,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Validator\Constraints\Type; // Correct import statement for Type constraint
+use Symfony\Component\Validator\Constraints\Type; 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class Commande1Type extends AbstractType
 {
@@ -34,8 +35,12 @@ class Commande1Type extends AbstractType
                 new Type(['type' => 'float', 'message' => 'Prix must be a valid number']),
             ],
         ])
+            ->add('telephone')
             ->add('service')
-            ->add('user')
+            ->add('user', EntityType::class, [
+                'class' => 'App\Entity\User',
+                'choice_label' => 'username', 
+            ])
         ;
     }
 

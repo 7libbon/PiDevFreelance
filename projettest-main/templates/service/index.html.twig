@@ -1,4 +1,4 @@
-{% extends 'baseF.html.twig' %}
+{% extends 'baseDoua.html.twig' %}
 
 {% block title %}Service index{% endblock %}
 
@@ -30,9 +30,9 @@
 
 {% block body %}
 
-    <div class="row mb-4">
+<div class="row mb-4">
         <div class="col-md-6">
-            <form action="{{ path('app_service_index') }}" method="GET" class="form-inline">
+            <form action="{{ path('app_service_index')}}" method="GET" class="form-inline">
                 <div class="col-md-6">
             <input type="text" id="search-input" name='search' class="form-control" placeholder="Search...">
             <button type="submit" class="btn btn-primary">Search</button>
@@ -42,7 +42,6 @@
                 
         </div>
     </div>
-
     <div class="row">
         {% for service in services %}
             <div class="col-md-4 mb-4">
@@ -52,9 +51,10 @@
                         <h5 class="card-title">{{ service.nom }}</h5>
                         <p class="card-text">{{ service.description }}</p>
                         <div class="btn-group" role="group" aria-label="Service Actions">
-                            <a href="{{ path('app_service_show', {'id': service.id}) }}" class="btn btn-primary">Show</a>
-                            <a href="{{ path('app_service_edit', {'id': service.id}) }}" class="btn btn-warning">Edit</a>
-                            <a href="{{ path('app_commande_new') }}" class="btn btn-commander">Commander</a>
+                            <a href="{{ path('app_service_show', {'id': service.id}) }}" class="btn btn-primary">See Details</a>
+                            <a href="{{ path('app_commande_new') }}" class="btn btn-commander">Commander 🛒</a>
+                            <button class="btn like-btn" data-service-id="{{ service.id }}"><i class="fa fa-thumbs-up"></i> Like <span class="like-count">0</span></button>
+                            <button class="btn dislike-btn" data-service-id="{{ service.id }}"><i class="fa fa-thumbs-down"></i> Dislike <span class="dislike-count">0</span></button>
                         </div>
                     </div>
                 </div>
@@ -65,11 +65,13 @@
             </div>
         {% endfor %}
     </div>
+</div>
 
-    <div class="pagination justify-content-center">
-        {{ knp_pagination_render(services) }}
-    </div>
-    <a href="{{ path('app_service_new') }}" class="btn btn-success">Create New</a>
+<div class="pagination justify-content-center">
+    {{ knp_pagination_render(services) }}
+</div>
+<a href="{{ path('app_service_new') }}" class="btn btn-success">Create New</a>
+
 {% endblock %}
 
 {% block javascripts %}
@@ -80,16 +82,62 @@
 
             cards.forEach(card => {
                 card.addEventListener("mouseover", function() {
-                    this.style.transform = "translateY(-10px)";
+                    this.style.transform = "translateY(-5px)";
+                    this.style.boxShadow = "0 6px 12px rgba(0, 0, 0, 0.15)";
                 });
 
                 card.addEventListener("mouseout", function() {
                     this.style.transform = "translateY(0)";
+                    this.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+                });
+
+                const likeButton = card.querySelector('.like-btn');
+                const dislikeButton = card.querySelector('.dislike-btn');
+                const likeCount = card.querySelector('.like-count');
+                const dislikeCount = card.querySelector('.dislike-count');
+
+                let likes = 0;
+                let dislikes = 0;
+                let liked = false;
+                let disliked = false;
+
+                likeButton.addEventListener('click', function() {
+                    if (!liked) {
+                        likes++;
+                        likeCount.textContent = likes;
+                        liked = true;
+                        if (disliked) {
+                            dislikes--;
+                            dislikeCount.textContent = dislikes;
+                            disliked = false;
+                        }
+                    } else {
+                        likes--;
+                        likeCount.textContent = likes;
+                        liked = false;
+                    }
+                });
+
+                dislikeButton.addEventListener('click', function() {
+                    if (!disliked) {
+                        dislikes++;
+                        dislikeCount.textContent = dislikes;
+                        disliked = true;
+                        if (liked) {
+                            likes--;
+                            likeCount.textContent = likes;
+                            liked = false;
+                        }
+                    } else {
+                        dislikes--;
+                        dislikeCount.textContent = dislikes;
+                        disliked = false;
+                    }
                 });
             });
         });
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     $(document).ready(function() {
             $('#search-input').on('input', function() {
@@ -120,4 +168,5 @@
             });
         });
         </script>
+
 {% endblock %}

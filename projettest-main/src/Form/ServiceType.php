@@ -6,13 +6,17 @@ use App\Entity\Service;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ServiceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('user')
+        ->add('user', EntityType::class, [
+            'class' => 'App\Entity\User',
+            'choice_label' => 'username', 
+        ])
             ->add('nom')
             ->add('description')
             ->add('disponibilite')

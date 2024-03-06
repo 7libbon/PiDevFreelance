@@ -41,6 +41,9 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commande')]
     private ?Service $service = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $telephone = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +105,18 @@ class Commande
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): static
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }

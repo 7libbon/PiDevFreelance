@@ -35,7 +35,17 @@ class DemandeRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
-
+    public function findTopThreeWithMostOffres()
+    {
+        return $this->createQueryBuilder('d')
+            ->select('d, COUNT(o.id) as offreCount')
+            ->leftJoin('d.offre', 'o')
+            ->groupBy('d.id')
+            ->orderBy('offreCount', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
 //    public function findOneBySomeField($value): ?Demande
 //    {
 //        return $this->createQueryBuilder('d')

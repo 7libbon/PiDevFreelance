@@ -12,53 +12,64 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Security;
+
 
 #[Route('/service')]
 class ServiceController extends AbstractController
 {
-    #[Route('/', name: 'app_service_index', methods: ['GET'])]
-    public function index(ServiceRepository $serviceRepository, PaginatorInterface $paginator, Request $request): Response
+    private $security;
+
+    public function __construct(Security $security)
     {
-        $page = $request->query->getInt('page', 1);
-        $pageSize = 3;
-
-        $searchTerm = $request->query->get('search');
-        if ($searchTerm) {
-            $servicesQuery = $serviceRepository->searchByNameOrCategory($searchTerm);
-        } else {
-            $servicesQuery = $serviceRepository->findAll();
-        }
-
-        $services = $paginator->paginate(
-            $servicesQuery,
-            $page,
-            $pageSize
-        );
-
-        return $this->render('service/index.html.twig', [
-            'services' => $services,
-        ]);
+        $this->security = $security;
     }
-
-    #[Route('/search', name: 'app_service_search', methods: ['GET'])]
-public function search(ServiceRepository $serviceRepository, Request $request): JsonResponse
+   #[Route('/', name: 'app_service_index', methods: ['GET'])]
+public function index(ServiceRepository $serviceRepository, PaginatorInterface $paginator, Request $request): Response
 {
-    $searchTerm = $request->query->get('search');
-    $services = $serviceRepository->searchByNameOrCategory($searchTerm);
+    $page = $request->query->getInt('page', 1);
+    $pageSize = 3;
 
-    // You may need to serialize your entities to return them properly
-    $data = []; 
-    foreach ($services as $service) {
-        $data[] = [
-            'id' => $service->getId(),
-            'name' => $service->getNom(), // Adjust according to your entity structure
-            // Add more fields if needed
-        ];
+    $searchTerm = $request->query->get('search');
+    $startLetter = $request->query->get('start_letter');
+
+    if ($startLetter) {
+        $servicesQuery = $serviceRepository->findByStartLetter($startLetter);
+    } elseif ($searchTerm) {
+        $servicesQuery = $serviceRepository->searchByNameOrCategory($searchTerm);
+    } else {
+        $servicesQuery = $serviceRepository->findAll();
     }
 
-    return new JsonResponse($data);
+    $services = $paginator->paginate(
+        $servicesQuery,
+        $page,
+        $pageSize
+    );
+
+    return $this->render('service/index.html.twig', [
+        'services' => $services,
+    ]);
 }
 
+    #[Route('/search', name: 'app_service_search', methods: ['GET'])]
+    public function search(ServiceRepository $serviceRepository, Request $request): JsonResponse
+    {
+        $searchTerm = $request->query->get('search');
+        $services = $serviceRepository->searchByNameOrCategory($searchTerm);
+
+        // Vous pouvez adapter les données retournées selon vos besoins.
+        $data = []; 
+        foreach ($services as $service) {
+            $data[] = [
+                'id' => $service->getId(),
+                'name' => $service->getNom(), // Assurez-vous que votre entité Service a une méthode getNom().
+                // Ajoutez d'autres champs si nécessaire.
+            ];
+        }
+
+        return new JsonResponse($data);
+    }
     #[Route('/backindex', name: 'app_service_indexback', methods: ['GET'])]
     public function indexback(ServiceRepository $serviceRepository): Response
     {
@@ -70,7 +81,17 @@ public function search(ServiceRepository $serviceRepository, Request $request): 
     #[Route('/new', name: 'app_service_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // Retrieve the currently logged-in user
+        $user = $this->security->getUser();
+
+        // Check if the user is logged in
+        if (!$user) {
+            throw $this->createAccessDeniedException('You must be logged in to create a service.');
+        }
+
         $service = new Service();
+        $service->setUser($user); // Set the user to the service entity
+
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
 
