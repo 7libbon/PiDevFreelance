@@ -13,11 +13,19 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $commantaire = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $statut = null;
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
+    #[Assert\Regex(pattern: '/^[a-zA-Z\s]*$/', message: 'Only letters and spaces are allowed.')]
+        private ?string $commantaire = null;
+
+
+        #[ORM\Column(length: 255)]
+        #[Assert\NotBlank]
+        #[Assert\Length(max: 255)]
+        #[Assert\Regex(pattern: '/^[a-zA-Z\s]*$/', message: 'Only letters and spaces are allowed.')]
+            private ?string $statut = null;
 
     /*#[ORM\Column]
     private ?int $id_cours = null;*/

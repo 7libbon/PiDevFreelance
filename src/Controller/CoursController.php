@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Service\SmsGenerator;
 
 use App\Entity\Cours;
 use App\Form\CoursType;
@@ -10,18 +11,46 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Paginator
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 #[Route('/cours')]
 class CoursController extends AbstractController
 {
     #[Route('/', name: 'app_cours_index', methods: ['GET'])]
-    public function index(CoursRepository $coursRepository): Response
+  
+    
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
+        if ($request->isXmlHttpRequest()) {
+            $searchTerm = $request->query->get('searchTerm');
+            $donnees = $this->getDoctrine()->getRepository(Cours::class)->search($searchTerm);
+    
+            $cours = $paginator->paginate(
+                $donnees,
+                $request->query->getInt('page', 1),
+                6
+            );
+    
+            $html = $this->renderView('cours/_cours_list.html.twig', [
+                'cours' => $cours,
+            ]);
+    
+            return new JsonResponse(['html' => $html]);
+        }
+    
+        $donnees = $this->getDoctrine()->getRepository(Cours::class)->findBy([], ['nbplace' => 'desc']);
+    
+        $cours = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            6
+        );
+    
         return $this->render('cours/index.html.twig', [
-            'cours' => $coursRepository->findAll(),
+            'cours' => $cours,
         ]);
     }
-
     #[Route('/new', name: 'app_cours_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -78,4 +107,14 @@ class CoursController extends AbstractController
 
         return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
     }
+  
+    public function getRealEntities($cour){
+        foreach ($cour as $cour){
+            $realEntities[$cour->getId()] = [$cour->getDescription(),$cour->getTitle()];
+
+        }
+        return $realEntities;
+    }
+ 
+
 }

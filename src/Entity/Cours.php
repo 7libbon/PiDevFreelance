@@ -1,11 +1,14 @@
 <?php
 
+// src/Entity/Cours.php
+
 namespace App\Entity;
 
 use App\Repository\CoursRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
 class Cours
@@ -16,21 +19,41 @@ class Cours
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
+    #[Assert\Regex(pattern: '/^[a-zA-Z\s]*$/', message: 'Only letters and spaces are allowed.')]
     private ?string $titre = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
+    #[Assert\Regex(pattern: '/^[a-zA-Z\s]*$/', message: 'Only letters and spaces are allowed.')]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
+    #[Assert\Regex(pattern: '/^[a-zA-Z\s]*$/', message: 'Only letters and spaces are allowed.')]
     private ?string $duree = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
+    #[Assert\Regex(pattern: '/^[a-zA-Z\s]*$/', message: 'Only letters and spaces are allowed.')]
     private ?string $categorie = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Type(type: 'integer')]
+    #[Assert\Regex(pattern: '/^\d+$/', message: 'Only numbers are allowed.')]
+    #[Assert\PositiveOrZero]
     private ?int $prix = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Type(type: 'integer')]
+    #[Assert\Regex(pattern: '/^\d+$/', message: 'Only numbers are allowed.')]
+    #[Assert\PositiveOrZero]
     private ?int $nbplace = null;
 
     #[ORM\OneToMany(mappedBy: 'cours', targetEntity: Reservation::class)]
@@ -156,13 +179,14 @@ class Cours
         return $this->user;
     }
 
-   /* */ public function setUser(?User $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 
         return $this;
     }
-      /**
+
+    /**
      * @return string
      */
     public function __toString()

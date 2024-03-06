@@ -34,3 +34,6 @@ front_route:
 baseB_route:
     path: /baseB
     controller: App\Controller\BaseBController::index         
+app_sendEmail:
+    path: '/send-email'
+    controller: App\Controller\CoursbController::sendEmail

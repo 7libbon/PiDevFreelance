@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\Cours;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\Query;
+
 
 /**
  * @extends ServiceEntityRepository<Cours>
@@ -20,7 +23,22 @@ class CoursRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Cours::class);
     }
-
+    public function search($searchTerm)
+    {
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->andWhere('c.title LIKE :searchTerm OR c.description LIKE :searchTerm')
+            ->setParameter('searchTerm', '%'.$searchTerm.'%')
+            ->orderBy('c.nbplace', 'DESC');
+    
+        return $queryBuilder->getQuery()->getResult();
+    }
+    public function getDistinctCategories()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('DISTINCT c.categorie')
+            ->getQuery()
+            ->getResult();
+    }
 //    /**
 //     * @return Cours[] Returns an array of Cours objects
 //     */

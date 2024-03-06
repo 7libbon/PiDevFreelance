@@ -1,10 +1,132 @@
 {% extends 'baseB.html.twig' %}
 
 {% block body %}
-	<h1>Edit Cours</h1>
+	<style>
+		body {
+			background-image: url('../../front/images/slide-01.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			min-height: 100vh;
+			align-items: center;
+			justify-content: center;
+			color: #fff;
+			font-family: 'Arial', sans-serif;
+		}
 
-	{{ include('coursb/_form.html.twig', {'button_label': 'New'}) }}
+		h1 {
+			text-align: center;
+			font-size: 2.5em;
+			margin-bottom: 20px;
+			color: white; /* Darken the heading text color */
+		}
 
+		form {
+			background-color: rgba(255, 255, 255, 0.9);
+			max-width: 100%; /* Make the form fill the body */
+			padding: 30px;
+			border-radius: 12px;
+			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+			box-sizing: border-box;
+			margin: 20px auto; /* Center the form and add space from the top */
+		}
+
+		label {
+			display: block;
+			margin-bottom: 12px;
+			font-weight: bold;
+			font-size: 18px;
+			color: #333; /* Darken the label text color */
+		}
+
+		input {
+			width: 100%;
+			padding: 12px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+			border: 2px solid #3498db;
+			border-radius: 8px;
+			font-size: 16px;
+		}
+
+		small {
+			color: #888;
+			font-size: 14px;
+			margin-top: 8px;
+			display: block;
+		}
+
+		button {
+			background-color: #45a049;
+			color: white;
+			padding: 15px 20px;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			font-size: 18px;
+			transition: background-color 0.3s ease;
+		}
+
+		button:hover {
+			background-color: #4CAF50;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 20px;
+		}
+
+		.return-button {
+			background-color: #3498db;
+			color: white;
+			border: none;
+			padding: 12px 24px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 18px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		.return-button:hover {
+			background-color: #297fb8;
+		}
+
+		a {
+			color: #3498db;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			transition: color 0.3s ease;
+		}
+
+		a:hover {
+			color: #297fb8;
+		}
+
+		/* New Title Styles */
+		.title {
+			text-align: center;
+			font-size: 1.5em;
+			margin-top: 30px;
+			color: #333; /* Darken the text color */
+		}
+	</style>
+	<div style="margin-top: 150px;">
+		<h1>
+			Create new course
+
+		</h1>
+
+
+		{{ include('coursb/_form.html.twig', {'button_label': 'Create'}) }}
+
+	</div>
 	<a href="{{ path('app_coursb_index') }}">back to list</a>
-
 {% endblock %}

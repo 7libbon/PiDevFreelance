@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\Cours;
 use App\Form\Cours1Type;
 use App\Repository\CoursRepository;
@@ -10,6 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse; // Add this line to import JsonResponse
+use Twig\Environment;
+
 
 #[Route('/coursb')]
 class CoursbController extends AbstractController
@@ -78,4 +80,24 @@ class CoursbController extends AbstractController
 
         return $this->redirectToRoute('app_coursb_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/search', name: 'app_search_cours', methods: ['GET'])]
+    public function search(Request $request, CoursRepository $CoursRepository): JsonResponse
+    {
+        $query = $request->query->get('q');
+        $results = $CoursRepository->findBySearchQuery($query); // Implement findBySearchQuery method in your repository
+
+        $formattedResults = [];
+        foreach ($results as $result) {
+            // Format results as needed
+            $formattedResults[] = [
+                'titre' => $result->getTitre(),
+                'categorie' => $result->getCategorie(),
+
+                // Add other fields as needed
+            ];
+        }
+
+        return new JsonResponse($formattedResults);
+    }
+   
 }

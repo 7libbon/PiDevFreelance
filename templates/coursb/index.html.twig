@@ -1,55 +1,84 @@
 {% extends 'baseB.html.twig' %}
 
-{% block body %}
-	<style>
-		footer {
-			background-color: transparent;
-			padding: 20px 0;
-			text-align: relative;
-			position: relative;
-			bottom: 0;
-			width: 100%;
-		}
-	</style>
-	<div class="container">
-		<h1>Cours index</h1>
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Titre</th>
-					<th>Description</th>
-					<th>Duree</th>
-					<th>Categorie</th>
-					<th>Prix</th>
-					<th>Nbplace</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for cour in cours %}
-					<tr>
-						<td>{{ cour.id }}</td>
-						<td>{{ cour.titre }}</td>
-						<td>{{ cour.description }}</td>
-						<td>{{ cour.duree }}</td>
-						<td>{{ cour.categorie }}</td>
-						<td>{{ cour.prix }}</td>
-						<td>{{ cour.nbplace }}</td>
-						<td>
-							<a href="{{ path('app_coursb_show', {'id': cour.id}) }}">show</a>
-							<a href="{{ path('app_coursb_edit', {'id': cour.id}) }}">edit</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="8">no records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-
-		<a href="{{ path('app_coursb_new') }}">Create new</a>
-	</div>
+{% block title %}Cours
 {% endblock %}
+
+{% block body %}
+	<style>/* Your custom styles for the Cours page */</style>
+
+<div class="container">
+	<h1>Cours index</h1>
+
+	<div class="text-center mt-3">
+		<div class="mb-3">
+			<input type="text" id="searchInput" class="form-control" placeholder="Search ..">
+		</div>
+	</div>
+
+	<table
+		class="table">
+		<!-- Your table headers -->
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Titre</th>
+				<th>Description</th>
+				<th>Duree</th>
+				<th>Categorie</th>
+				<th>Prix</th>
+				<th>Nbplace</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for cour in cours %}
+				<tr>
+					<td>{{ cour.id }}</td>
+					<td>{{ cour.titre }}</td>
+					<td>{{ cour.description }}</td>
+					<td>{{ cour.duree }}</td>
+					<td>{{ cour.categorie }}</td>
+					<td>{{ cour.prix }}</td>
+					<td>{{ cour.nbplace }}</td>
+					<td>
+						<a href="{{ path('app_coursb_show', {'id': cour.id}) }}">show</a>
+						<a href="{{ path('app_coursb_edit', {'id': cour.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_coursb_new') }}">Create new</a>
+	<a href="{{ path('app_send_email') }}">send mail</a>
+</div>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+const searchInput = document.getElementById('searchInput');
+const rows = document.querySelectorAll('.table tbody tr');
+
+searchInput.addEventListener('input', function () {
+const searchTerm = this.value.trim().toLowerCase();
+
+rows.forEach(function (row) {
+const id = row.querySelector('td:nth-child(1)').textContent.trim().toLowerCase();
+const titre = row.querySelector('td:nth-child(2)').textContent.trim().toLowerCase();
+const description = row.querySelector('td:nth-child(3)').textContent.trim().toLowerCase();
+const duree = row.querySelector('td:nth-child(4)').textContent.trim().toLowerCase();
+const categorie = row.querySelector('td:nth-child(5)').textContent.trim().toLowerCase();
+const prix = row.querySelector('td:nth-child(6)').textContent.trim().toLowerCase();
+const nbplace = row.querySelector('td:nth-child(7)').textContent.trim().toLowerCase();
+
+if (id.includes(searchTerm) || titre.includes(searchTerm) || description.includes(searchTerm) || duree.includes(searchTerm) || categorie.includes(searchTerm) || prix.includes(searchTerm) || nbplace.includes(searchTerm)) {
+row.style.display = 'table-row';
+} else {
+row.style.display = 'none';
+}
+});
+});
+});
+</script>{% endblock %}

@@ -1,11 +1,84 @@
 {% extends 'baseF.html.twig' %}
 
 {% block body %}
-    <h1>Edit Cours</h1>
+	<style>
+		body {
+			background-image: url('/front/images/slide-01.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			min-height: 100vh;
+			align-items: center;
+			justify-content: center;
+		}
 
-    {{ include('cours/_form.html.twig', {'button_label': 'Update'}) }}
+		form {
+			background-color: #fff;
+			max-width: 400px;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		}
+		h1 {
+			color: white;
+		}
+		label {
+			display: block;
+			margin-bottom: 8px;
+			font-weight: bold;
+		}
 
-    <a href="{{ path('app_cours_index') }}">back to list</a>
+		input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+		}
 
-    {{ include('cours/_delete_form.html.twig') }}
+		small {
+			color: #888;
+			font-size: 12px;
+			margin-top: 555454654654px;
+			display: block;
+		}
+
+		button {
+			background-color: #4caf50;
+			color: white;
+			padding: 12px 15px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+			margin: 20px;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+		footer {
+			background-color: transparent;
+			padding: 20px 0;
+			text-align: relative;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+		}
+	</style>
+
+	<div style="margin-top: 150px;">
+		<h1>Editer votre cours</h1>
+
+		{{ include('cours/_form.html.twig') }}
+
+		<button type="submit" form="newCoursForm" class="btn md-7">{{ button_label|default('Update') }}</button>
+
+		<a href="{{ path('app_cours_index') }}">back to list</a>
+	</div>
 {% endblock %}
