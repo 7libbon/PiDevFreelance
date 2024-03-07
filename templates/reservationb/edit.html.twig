@@ -1,0 +1,13 @@
+{% extends 'basemoncef.html.twig' %}
+
+{% block title %}Edit Reservation{% endblock %}
+
+{% block body %}
+    <h1>Edit Reservation</h1>
+
+    {{ include('reservationb/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_reservationb_index') }}">back to list</a>
+
+    {{ include('reservationb/_delete_form.html.twig') }}
+{% endblock %}

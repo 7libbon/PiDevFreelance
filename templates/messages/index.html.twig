@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie
+{% endblock %}
+
+{% block script %}
+	<script src="path/to/popper.min.js"></script>
+	<script src="path/to/bootstrap.min.js"></script>
+	<style>
+		/* Add styles for animation */
+		.btn-primary {
+			transition: transform 0.3s ease-in-out;
+		}
+
+		.btn-primary:hover {
+			transform: scale(1.1);
+		}
+
+		/* Add styles for the offcanvas */
+		.offcanvas {
+			background-color: rgba(0, 0, 0, 0.7);
+			color: white;
+		}
+
+		.list-group-item {
+			background-color: transparent;
+			border: 1px solid white;
+			transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+		}
+
+		.list-group-item:hover {
+			background-color: white;
+			color: black;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<style>
+		/* Your existing styles remain here */
+		body {
+			background-image: url('/front/images/slide-01.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			min-height: 100vh;
+			align-items: center;
+			justify-content: center;
+			color: white; /* Set text color to white */
+		}
+
+		@keyframes pulse {
+			0% {
+				transform: scale(1);
+			}
+			50% {
+				transform: scale(1.9);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+
+		footer {
+			background-color: skyblue;
+			padding: 20px 0;
+			text-align: relative;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+		}
+
+		h1,
+		.lead {
+			color: orange; /* Set h1 and lead text color to orange */
+		}
+
+		/* Additional styles for the container */
+		.custom-container {
+			background-color: transparent;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+	</style>
+
+	<section class="container mt-4">
+		<div class="row">
+			<div class="col">
+				<div class="custom-container">
+					<h1>Messagerie</h1>
+					<p class="lead">Résumé de la messagerie pour</p>
+					<p class="text-white">Adresse email de l'utilisateur connecté :
+						{{ app.user.email }}</p>
+
+					{% dump(receivedMessages) %}
+					{% dump(sentMessages) %}
+					<p class="text-white">Vous avez reçu
+						{{ receivedMessages|length }}
+						messages</p>
+					<p class="text-white">Vous avez envoyé
+						{{ sentMessages|length }}
+						messages</p>
+
+					{% for message in app.flashes("message") %}
+						<div class="alert alert-success alert-dismissible fade show" role="alert">
+							{{ message }}
+							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+						</div>
+					{% endfor %}
+
+					<div class="mb-3">
+						<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+							Voir mes dossiers
+						</a>
+						<a href="{{ path("send") }}" class="btn btn-primary">Envoyer un message</a>
+					</div>
+					        <a href="/cours" class="btn btn-primary mt-3">Return to Cours</a>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+		<div class="offcanvas-header">
+			<h2 class="offcanvas-title" id="offcanvasExampleLabel">Mes dossiers</h2>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="list-group">
+			<a href="{{ path("messages") }}" class="list-group-item list-group-item-action active">Accueil</a>
+		</div>
+		<div class="list-group">
+			<a href="{{ path("received") }}" class="list-group-item list-group-item-action">Boîte de réception</a>
+		</div>
+		<div class="list-group">
+			<a href="{{ path("sent") }}" class="list-group-item list-group-item-action">Eléments envoyés</a>
+		</div>
+	</div>
+{% endblock %}

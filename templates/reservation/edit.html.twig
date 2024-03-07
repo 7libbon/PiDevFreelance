@@ -1,0 +1,141 @@
+{# reservation/_edit_form.html.twig #}
+{% extends 'basemonceff.html.twig' %}
+
+{% block body %}
+	<style>
+		body {
+			background-image: url('../../front/images/slide-01.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			min-height: 100vh;
+			align-items: center;
+			justify-content: center;
+		}
+
+		form {
+			background-color: #fff;
+			max-width: 400px;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		}
+
+		label {
+			display: block;
+			margin-bottom: 8px;
+			font-weight: bold;
+		}
+
+		input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+		}
+
+		small {
+			color: #888;
+			font-size: 12px;
+			margin-top: 5px;
+			display: block;
+		}
+
+		button {
+			background-color: black;
+			color: white;
+			padding: 12px 15px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+
+		footer {
+			background-color: darkblue;
+			padding: 20px 0;
+			text-align: center;
+			width: 100%;
+			color: white;
+			margin-top: 180px; /* Push the footer to the bottom */
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: auto; /* Adjust the margin as needed */
+		}
+
+		.return-button {
+			background-color: #3498db;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.3s ease; /* Add a smooth transition effect */
+		}
+
+		.return-button:hover {
+			background-color: #297fb8;
+		}
+	</style>
+
+	<div style="margin-top: 80px;">
+		<h1 style="color: white;">Update Reservation</h1>
+
+		<form action="{{ path('app_reservation_edit', {'id': form.vars.data.id}) }}" method="post" id="editReservationForm" novalidate>
+			{{ form_start(form) }}
+
+			<div>
+				<label for="{{ form.commantaire.vars.id }}">commantaire:</label>
+				{{ form_widget(form.commantaire, {'attr': {'required': 'required', 'pattern': '[A-Za-z]+'}}) }}
+				<small>Only characters are allowed</small>
+			</div>
+
+			<div>
+				<label for="{{ form.statut.vars.id }}">statut:</label>
+				{{ form_widget(form.statut, {'attr': {'required': 'required', 'pattern': '[A-Za-z]+'}}) }}
+				<small>Only characters are allowed</small>
+			</div>
+
+			<div>
+				<label for="{{ form.cours.vars.id }}">cours:</label>
+				{{ form_widget(form.cours, {'attr': {'required': 'required', 'pattern': '[A-Za-z]+'}}) }}
+				<small>Select the correct cours</small>
+			</div>
+
+			<div>
+				<label for="{{ form.user.vars.id }}">user:</label>
+				{{ form_widget(form.user, {'attr': {'pattern': '[A-Za-z]+'}}) }}
+				<small>Select the correct user</small>
+			</div>
+
+			<button type="submit" class="btn">{{ button_label|default('Update') }}</button>
+			{{ form_end(form) }}
+		</form>
+
+		<script>
+			// Add an event listener for form submission
+document.getElementById('editReservationForm').addEventListener('submit', function (event) { // Check form validity before submission
+if (!this.checkValidity()) {
+event.preventDefault(); // Prevent form submission if not valid
+alert('Please fill in all required fields with valid input.');
+}
+});
+		</script>
+	{% endblock  %}
