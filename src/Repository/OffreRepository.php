@@ -20,6 +20,7 @@ class OffreRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Offre::class);
     }
+<<<<<<< HEAD
     public function findAllOrderedByApprovedStatut(): array
     {
         return $this->createQueryBuilder('o')
@@ -29,6 +30,9 @@ class OffreRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+=======
+
+>>>>>>> origin/master
 //    /**
 //     * @return Offre[] Returns an array of Offre objects
 //     */
@@ -43,6 +47,7 @@ class OffreRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
+<<<<<<< HEAD
 //    public function findTopThreeByDemandCount(): array
 //    {
 //        return $this->createQueryBuilder('o')
@@ -77,6 +82,9 @@ class OffreRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+=======
+
+>>>>>>> origin/master
 //    public function findOneBySomeField($value): ?Offre
 //    {
 //        return $this->createQueryBuilder('o')

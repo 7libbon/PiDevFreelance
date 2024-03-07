@@ -1,0 +1,104 @@
+{% extends 'baseB.html.twig' %}
+
+{% block body %}
+    <style>
+        body {
+            background-image: url(../../front/images/slide-01.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .courses-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .course-container {
+            border: 11px solid #ccc;
+            padding: 20px; /* Set a specific height for the containers */
+            margin: 20px; /* Adjust the margin as needed */
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: turquoise;
+            transition: transform 0.3s ease-in-out;
+            flex: 0 0 calc(30% - 40px); /* Adjust the width of each container */
+        }
+
+        .symfony-logo {
+            font-size: 40px;
+            color: #ff3d00;
+            margin-bottom: 10px;
+        }
+
+        .course-container:hover {
+            animation: pulse 0.3s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .course-icon {
+            font-size: 24px;
+            color: #3498db;
+        }
+
+        .course-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        footer {
+            background-color: black;
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+
+    <div class="courses-container">
+        {% for cour in cours %}
+            <a href="{{ path('app_cours_show', {'id': cour.id}) }}" class="course-link">
+                <div class="course-container">
+                    <i class="fas fa-symfony symfony-logo"></i>
+                    <i class="fas fa-book course-icon"></i>
+                    <h2>{{ cour.titre }}</h2>
+                    <strong>{{ 'Categorie:'|trans }}</strong>
+                    {{ cour.categorie }}
+                </div>
+            </a>
+        {% else %}
+            <p>{{ 'No records found'|trans }}</p>
+        {% endfor %}
+    </div>
+
+
+    <script>
+        // Add event listener for scroll to update background position
+        window.addEventListener('scroll', function () {
+            const scrollTop = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            const backgroundPosition = `50% ${scrollTop * 100}px`;
+            document.body.style.backgroundPosition = backgroundPosition;
+        });
+    </script>
+{% endblock %}

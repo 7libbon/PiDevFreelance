@@ -7,7 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+<<<<<<< HEAD
 use Symfony\Component\Validator\Constraints as Assert;
+=======
+>>>>>>> origin/master
 
 #[ORM\Entity(repositoryClass: OffreRepository::class)]
 class Offre
@@ -18,6 +21,7 @@ class Offre
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+<<<<<<< HEAD
     #[Assert\NotBlank(message: 'Veuiller saisir un nom')]
     private ?string $nom = null;
 
@@ -42,6 +46,27 @@ class Offre
 
     #[ORM\ManyToOne(inversedBy: 'offres')]
     private ?User $idUser = null;
+=======
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $echances = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $statut = null;
+
+    #[ORM\Column]
+    private ?float $prix = null;
+
+    #[ORM\OneToMany(mappedBy: 'offre', targetEntity: Demande::class)]
+    private Collection $demandes;
+
+    #[ORM\ManyToOne(inversedBy: 'offres')]
+    private ?User $id_user = null;
+>>>>>>> origin/master
 
     public function __construct()
     {
@@ -145,6 +170,7 @@ class Offre
 
     public function getIdUser(): ?User
     {
+<<<<<<< HEAD
         return $this->idUser;
     }
 
@@ -165,3 +191,15 @@ class Offre
     }
 
 }
+=======
+        return $this->id_user;
+    }
+
+    public function setIdUser(?User $id_user): static
+    {
+        $this->id_user = $id_user;
+
+        return $this;
+    }
+}
+>>>>>>> origin/master

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'basemonceff.html.twig' %}
 
 {% block body %}
@@ -84,3 +85,112 @@
 
 	</div>
 {% endblock %}
+=======
+{% extends 'baseF.html.twig' %}
+
+{% block body %}
+	<style>
+		body {
+			background-image: url('/front/images/slide-01.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			min-height: 100vh;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.courses-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		.course-container {
+			border: 11px solid #ccc;
+			padding: 20px; /* Set a specific height for the containers */
+			margin: 20px; /* Adjust the margin as needed */
+			text-align: center;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			border-radius: 8px;
+			background-color: blue;
+			transition: transform 0.3s ease-in-out;
+			flex: 0 0 calc(30% - 40px); /* Adjust the width of each container */
+		}
+
+
+		.course-container:hover {
+			animation: pulse 0.5s infinite;
+		}
+
+		@keyframes pulse {
+			0% {
+				transform: scale(1);
+			}
+			50% {
+				transform: scale(1.9);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+
+		.course-icon {
+			font-size: 24px;
+			color: blue;
+		}
+
+		.course-link {
+			text-decoration: none;
+			color: inherit;
+			display: block;
+		}
+
+		footer {
+			background-color: transparent;
+			padding: 20px 0;
+			text-align: relative;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+		}
+	</style>
+
+	<div class="courses-container">
+		{% for reservation in reservations %}
+			<a href="{{ path('app_reservation_show', {'id': reservation.id}) }}" class="course-link">
+				<div class="course-container">
+					<i class="fas fa-symfony symfony-logo"></i>
+					<i class="fas fa-book course-icon"></i>
+					<h2>{{ reservation.commantaire }}</h2>
+					<strong>{{ 'statut:'|trans }}</strong>
+					{{ reservation.statut }}
+					<h2>
+						<strong>{{ 'cours:'|trans }}</strong>
+						{{ reservation.cours }}
+						<h2>
+							<strong>{{ 'user:'|trans }}</strong>
+							{{ reservation.user }}
+						</div>
+					</a>
+				{% else %}
+					<p>{{ 'No records found'|trans }}</p>
+				{% endfor %}
+			</div>
+
+
+			<script>
+				// Add event listener for scroll to update background position
+window.addEventListener('scroll', function () {
+const scrollTop = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+const backgroundPosition = `50% ${
+scrollTop * 100
+}px`;
+document.body.style.backgroundPosition = backgroundPosition;
+});
+			</script>
+		{% endblock %}
+>>>>>>> origin/master

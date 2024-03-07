@@ -35,6 +35,7 @@ class DemandeRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
+<<<<<<< HEAD
     public function findTopThreeWithMostOffres()
     {
         return $this->createQueryBuilder('d')
@@ -46,6 +47,9 @@ class DemandeRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+=======
+
+>>>>>>> origin/master
 //    public function findOneBySomeField($value): ?Demande
 //    {
 //        return $this->createQueryBuilder('d')

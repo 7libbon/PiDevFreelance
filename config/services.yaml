@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+<<<<<<< HEAD
     image_directory: '%kernel.project_dir%/public/uploads/images'
     twilio_account_sid: '%env(TWILIO_ACCOUNT_SID)%'
     twilio_auth_token: '%env(TWILIO_AUTH_TOKEN)%'
@@ -12,6 +13,11 @@ parameters:
         arguments:
             $imageDirectory: '%image_directory%'
 services:
+=======
+
+services:
+
+>>>>>>> origin/master
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

@@ -233,6 +233,12 @@
             "./assets/controllers/hello_controller.js"
         ]
     },
+<<<<<<< HEAD
+=======
+    "symfony/swiftmailer-bundle": {
+        "version": "v2.3.8"
+    },
+>>>>>>> origin/master
     "symfony/translation": {
         "version": "5.4",
         "recipe": {
@@ -321,6 +327,7 @@
             "./webpack.config.js"
         ]
     },
+<<<<<<< HEAD
     "symfonycasts/reset-password-bundle": {
         "version": "1.14",
         "recipe": {
@@ -333,6 +340,8 @@
             "./config/packages/reset_password.yaml"
         ]
     },
+=======
+>>>>>>> origin/master
     "symfonycasts/verify-email-bundle": {
         "version": "v1.16.1"
     },

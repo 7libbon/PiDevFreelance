@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'basemonceff.html.twig' %}
 {% block body %}
 	<div style="margin-top: 150px;">
@@ -7,4 +8,115 @@
 
 		<a href="{{ path('app_reservation_index') }}">back to list</a>
 	</div>
+=======
+{% extends 'baseF.html.twig' %}
+
+{% block body %}
+	<style>
+		body {
+			background-image: url('../../front/images/slide-01.jpg');
+			background-size: cover;
+			background-position: center;
+			background-attachment: fixed;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			min-height: 100vh;
+			align-items: center;
+			justify-content: center;
+		}
+
+		form {
+			background-color: #fff;
+			max-width: 400px;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		}
+
+		label {
+			display: block;
+			margin-bottom: 8px;
+			font-weight: bold;
+		}
+
+		input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			box-sizing: border-box;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+		}
+
+		small {
+			color: #888;
+			font-size: 12px;
+			margin-top: 5px;
+			display: block;
+		}
+
+		button {
+			background-color: black;
+			color: white;
+			padding: 12px 15px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+
+		footer {
+			background-color: darkblue;
+			padding: 20px 0;
+			text-align: center;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 20px; /* Adjust the margin as needed */
+		}
+
+		.return-button {
+			background-color: #3498db;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.3s ease; /* Add a smooth transition effect */
+		}
+
+		.return-button:hover {
+			background-color: #297fb8;
+		}
+	</style>
+
+	<div style="margin-top: 50px;">
+		<h1 style="color: white;">Create new Reservation</h1>
+
+		{{ include('reservation/_form.html.twig') }}
+
+		<div class="button-container">
+			<button type="submit" form="newReservationForm" class="btn">{{ button_label|default('Save') }}</button>
+			<button class="return-button">
+				<a href="{{ path('app_reservation_index') }}" style="color: white; text-decoration: none;">Back to List</a>
+			</button>
+		</div>
+	</div>
+
+>>>>>>> origin/master
 {% endblock %}

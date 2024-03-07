@@ -15,6 +15,7 @@ class Commande
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+<<<<<<< HEAD
     #[Assert\NotBlank(message: 'Date cannot be blank')]    
     private ?\DateTimeInterface $date = null;
 
@@ -34,16 +35,31 @@ class Commande
     private ?float $prix = null;
 
 
+=======
+    private ?\DateTimeInterface $date = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $statut = null;
+
+    #[ORM\Column]
+    private ?float $prix = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Service $service = null;
+>>>>>>> origin/master
 
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?User $user = null;
 
+<<<<<<< HEAD
     #[ORM\ManyToOne(inversedBy: 'commande')]
     private ?Service $service = null;
 
     #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
+=======
+>>>>>>> origin/master
     public function getId(): ?int
     {
         return $this->id;
@@ -108,6 +124,7 @@ class Commande
 
         return $this;
     }
+<<<<<<< HEAD
 
     public function getTelephone(): ?string
     {
@@ -120,4 +137,6 @@ class Commande
 
         return $this;
     }
+=======
+>>>>>>> origin/master
 }

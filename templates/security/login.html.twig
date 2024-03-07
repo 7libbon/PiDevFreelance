@@ -21,7 +21,11 @@ body{
 }
 .background{
     width: 430px;
+<<<<<<< HEAD
     height: 570px;
+=======
+    height: 520px;
+>>>>>>> origin/master
     position: absolute;
     transform: translate(-50%,-50%);
     left: 50%;
@@ -51,7 +55,11 @@ body{
     bottom: -80px;
 }
 form{
+<<<<<<< HEAD
     height: 570px;
+=======
+    height: 520px;
+>>>>>>> origin/master
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -145,6 +153,7 @@ button{
                         </div>
                     {% endfor %}
   <form method="post">
+<<<<<<< HEAD
   {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -165,6 +174,8 @@ button{
     {% endif %}
     {% endif %}
 
+=======
+>>>>>>> origin/master
    {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -187,7 +198,10 @@ button{
           <div class="go"><i class="fab fa-google"></i>  Google</div>
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
+<<<<<<< HEAD
          <div class="auth-option text-center pt-5">Forgot Password ? <a class="text-link" href="{{ path('app_forgot_password_request') }}">Reset</a></div>
+=======
+>>>>>>> origin/master
         <div class="auth-option text-center pt-5">Doesnt have an account? <a class="text-link" href="{{ path('app_register') }}">Sign in</a></div>
     </form>
 </body>

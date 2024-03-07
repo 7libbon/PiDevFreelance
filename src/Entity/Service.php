@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\ServiceRepository;
+<<<<<<< HEAD
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+=======
+use Doctrine\ORM\Mapping as ORM;
+>>>>>>> origin/master
 
 #[ORM\Entity(repositoryClass: ServiceRepository::class)]
 class Service
@@ -17,6 +21,7 @@ class Service
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+<<<<<<< HEAD
     #[Assert\NotBlank(message: 'Name cannot be blank')]
     #[Assert\Length(max: 50, maxMessage: 'Name content cannot be longer than {{ limit }} characters')]
     private ?string $nom = null;
@@ -54,6 +59,22 @@ class Service
         $this->commande = new ArrayCollection();
     }
 
+=======
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $disponibilite = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $categorie = null;
+
+    #[ORM\ManyToOne(inversedBy: 'services')]
+    private ?User $user = null;
+
+>>>>>>> origin/master
     public function getId(): ?int
     {
         return $this->id;
@@ -83,6 +104,7 @@ class Service
         return $this;
     }
 
+<<<<<<< HEAD
     public function getImage(): ?string
     {
         return $this->image;
@@ -98,6 +120,9 @@ class Service
         return $this;
     }
         public function getDisponibilite(): ?string
+=======
+    public function getDisponibilite(): ?string
+>>>>>>> origin/master
     {
         return $this->disponibilite;
     }
@@ -132,6 +157,7 @@ class Service
 
         return $this;
     }
+<<<<<<< HEAD
 
 public function __toString() {
         return $this->getNom(); // Or whatever method returns the description
@@ -167,4 +193,6 @@ public function removeCommande(Commande $commande): static
     return $this;
 }
 
+=======
+>>>>>>> origin/master
 }

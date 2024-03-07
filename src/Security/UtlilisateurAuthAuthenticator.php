@@ -15,7 +15,10 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+<<<<<<< HEAD
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
+=======
+>>>>>>> origin/master
 
 class UtlilisateurAuthAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -48,6 +51,7 @@ class UtlilisateurAuthAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+<<<<<<< HEAD
         $user = $token->getUser();
         if ($user->getIsBanned()==1) {
             throw new CustomUserMessageAuthenticationException('Your account has been banned.');
@@ -64,6 +68,16 @@ class UtlilisateurAuthAuthenticator extends AbstractLoginFormAuthenticator
      
     }
     }
+=======
+       
+       if($token->getUser()->getRole()=="Client" || $token->getUser()->getRole()=="Freelancer")
+         return new RedirectResponse($this->urlGenerator->generate('app_front'));
+        else
+        return new RedirectResponse($this->urlGenerator->generate('app_back'));
+        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+    }
+
+>>>>>>> origin/master
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);

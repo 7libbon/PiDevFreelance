@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+<<<<<<< HEAD
 use App\Form\PassTypeFront;
 use App\Form\UserEditType;
+=======
+>>>>>>> origin/master
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,12 +16,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+<<<<<<< HEAD
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+=======
+>>>>>>> origin/master
 
 #[Route('/user')]
 class UserController extends AbstractController
 {
+<<<<<<< HEAD
     #[Route('/thanks/{id}', name: 'thanks' ,methods:['GET'])]
     public function thanks(User $user): Response
     {
@@ -51,12 +58,23 @@ public function searchUsers(Request $request, UserRepository $utilisateurReposit
             'clients' => $utilisateurRepository->findByRole("Client"),
         ]);
      
+=======
+    #[Route('/', name: 'app_utilisateur_index', methods: ['GET'])]
+    public function index(UserRepository $utilisateurRepository): Response
+    {
+        return $this->render('utilisateur/index.html.twig', [
+            'utilisateurs' => $utilisateurRepository->findAll(),
+        ]);
+>>>>>>> origin/master
     }
 
     #[Route('/new', name: 'app_utilisateur_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+<<<<<<< HEAD
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+=======
+>>>>>>> origin/master
         $utilisateur = new User();
         $form = $this->createForm(UserType::class, $utilisateur);
         $form->handleRequest($request);
@@ -77,11 +95,15 @@ public function searchUsers(Request $request, UserRepository $utilisateurReposit
     #[Route('/{id}', name: 'app_utilisateur_show', methods: ['GET'])]
     public function show(User $utilisateur): Response
     {
+<<<<<<< HEAD
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+=======
+>>>>>>> origin/master
         return $this->render('utilisateur/show.html.twig', [
             'utilisateur' => $utilisateur,
         ]);
     }
+<<<<<<< HEAD
     #[Route('/{id}/editPassUser', name: 'app_pass_front', methods: ['GET', 'POST'])]
     public function editPassFront(Request $request, User $user, UserPasswordHasherInterface $userPasswordHasher,EntityManagerInterface $entityManager): Response
     {
@@ -149,6 +171,12 @@ public function searchUsers(Request $request, UserRepository $utilisateurReposit
     public function edit(Request $request,UserPasswordHasherInterface $userPasswordHasher, User $user, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+=======
+
+    #[Route('/{id}/edit', name: 'app_utilisateur_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request,UserPasswordHasherInterface $userPasswordHasher, User $user, EntityManagerInterface $entityManager): Response
+    {
+>>>>>>> origin/master
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -195,6 +223,7 @@ public function searchUsers(Request $request, UserRepository $utilisateurReposit
             'form' => $form,
         ]);
     }
+<<<<<<< HEAD
     #[Route('/profile/{id}', name: 'app_profile', methods: ['GET'])]
     public function showFront(User $utilisateur): Response
     {
@@ -241,6 +270,9 @@ public function searchUsers(Request $request, UserRepository $utilisateurReposit
             'form' => $form,
         ]);
     }
+=======
+
+>>>>>>> origin/master
     #[Route('/{id}', name: 'app_utilisateur_delete', methods: ['POST'])]
     public function delete(Request $request, User $utilisateur, EntityManagerInterface $entityManager): Response
     {
@@ -251,6 +283,9 @@ public function searchUsers(Request $request, UserRepository $utilisateurReposit
 
         return $this->redirectToRoute('app_utilisateur_index', [], Response::HTTP_SEE_OTHER);
     }
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> origin/master
 }

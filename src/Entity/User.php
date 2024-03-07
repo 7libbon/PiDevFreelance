@@ -106,7 +106,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $isVerified = false;
     #[ORM\Column(type: 'boolean' , options: ['default' => false]) ]
     private $isBanned = false;
+<<<<<<< HEAD
  /**
+=======
+  /**
+>>>>>>> origin/master
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="sender", orphanRemoval=true)
      */
     private $sent;
@@ -115,6 +119,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="recipient", orphanRemoval=true)
      */
     private $received;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     public function __construct()
     {
         $this->offres = new ArrayCollection();
@@ -130,6 +138,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->sent = new ArrayCollection(); // Added this line
         $this->received = new ArrayCollection(); // Added this line
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/master
 
 
     public function getId(): ?int
@@ -629,6 +641,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->isBanned;
     }
 
+<<<<<<< HEAD
     public function setIsBanned(bool $isBanned): static
     {
         $this->isBanned = $isBanned;
@@ -636,6 +649,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
      /**
+=======
+    public function setIsBanned(bool $isVerified): static
+    {
+        $this->isBanned = $isVerified;
+
+        return $this;
+    }
+    /**
+>>>>>>> origin/master
      * @return Collection|Messages[]
      *//**
  * @return Collection<int, Messages>
@@ -703,4 +725,8 @@ public function getReceived(): Collection
     {
         return $this->nom; // Assuming "titre" is the property you want to display
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master

@@ -35,6 +35,7 @@ class ServiceRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
+<<<<<<< HEAD
     /**
      * Recherche les services par nom ou catégorie.
      *
@@ -56,6 +57,9 @@ class ServiceRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
 }
+=======
+
+>>>>>>> origin/master
 //    public function findOneBySomeField($value): ?Service
 //    {
 //        return $this->createQueryBuilder('s')
@@ -65,6 +69,7 @@ class ServiceRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+<<<<<<< HEAD
 
 public function findByExampleField($value): array
    {
@@ -76,4 +81,6 @@ public function findByExampleField($value): array
                    ->getQuery()
                    ->getResult();
     }
+=======
+>>>>>>> origin/master
 }

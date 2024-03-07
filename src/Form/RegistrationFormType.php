@@ -64,9 +64,13 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('date_n', DateType::class, [
                 'widget' => 'single_text',
+<<<<<<< HEAD
                 'constraints' => [
                     new NotBlank(['message' => 'Please enter your date of birth']),
                 ],
+=======
+                
+>>>>>>> origin/master
             ])
             ->add('sexe', ChoiceType::class, [
                 'choices' => [
@@ -81,7 +85,11 @@ class RegistrationFormType extends AbstractType
             ->add('num_tel')
             ->add('role', ChoiceType::class, [
                 'choices' => [
+<<<<<<< HEAD
                     
+=======
+                    'Admin' => 'Admin',
+>>>>>>> origin/master
                     'Freelancer' => 'Freelancer',
                     'Client' => 'Client',
                     

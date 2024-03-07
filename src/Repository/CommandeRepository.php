@@ -20,6 +20,7 @@ class CommandeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Commande::class);
     }
+<<<<<<< HEAD
     /**
      * @param int $limit
      * @return array
@@ -36,6 +37,8 @@ class CommandeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+=======
+>>>>>>> origin/master
 
 //    /**
 //     * @return Commande[] Returns an array of Commande objects

@@ -1,10 +1,14 @@
 {% extends 'baseB.html.twig' %}
 
+<<<<<<< HEAD
 {% block search %}
  <form method="POST" action="{{path('app_search')}}" class="d-none d-md-flex ms-4">
                     <input class="form-control bg-dark border-0" name="search" type="text" placeholder="Search">
                 </form>
 {% endblock %}
+=======
+
+>>>>>>> origin/master
 
 {% block content %}
  <!-- Sale & Revenue Start -->
@@ -14,8 +18,13 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
+<<<<<<< HEAD
                                 <p class="mb-2">Total Users</p>
                                 <h6 class="mb-0">{{utilisateurs|length}}</h6>
+=======
+                                <p class="mb-2">Today Sale</p>
+                                <h6 class="mb-0">$1234</h6>
+>>>>>>> origin/master
                             </div>
                         </div>
                     </div>
@@ -23,8 +32,13 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-bar fa-3x text-primary"></i>
                             <div class="ms-3">
+<<<<<<< HEAD
                                 <p class="mb-2">Total Freelancers</p>
                                 <h6 class="mb-0">{{freelancers|length}}</h6>
+=======
+                                <p class="mb-2">Total Sale</p>
+                                <h6 class="mb-0">$1234</h6>
+>>>>>>> origin/master
                             </div>
                         </div>
                     </div>
@@ -32,8 +46,13 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-area fa-3x text-primary"></i>
                             <div class="ms-3">
+<<<<<<< HEAD
                                 <p class="mb-2">Total Admins</p>
                                 <h6 class="mb-0">{{admins|length}}</h6>
+=======
+                                <p class="mb-2">Today Revenue</p>
+                                <h6 class="mb-0">$1234</h6>
+>>>>>>> origin/master
                             </div>
                         </div>
                     </div>
@@ -41,8 +60,13 @@
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-chart-pie fa-3x text-primary"></i>
                             <div class="ms-3">
+<<<<<<< HEAD
                                 <p class="mb-2">Total Clients</p>
                                 <h6 class="mb-0">{{clients|length}}</h6>
+=======
+                                <p class="mb-2">Total Revenue</p>
+                                <h6 class="mb-0">$1234</h6>
+>>>>>>> origin/master
                             </div>
                         </div>
                     </div>
@@ -57,7 +81,11 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
+<<<<<<< HEAD
                                 <h6 class="mb-0">Accounts creation rate</h6>
+=======
+                                <h6 class="mb-0">Worldwide Sales</h6>
+>>>>>>> origin/master
                                 <a href="">Show All</a>
                             </div>
                             <canvas id="worldwide-sales"></canvas>
@@ -66,15 +94,23 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-secondary text-center rounded p-4">
                             <div class="d-flex align-items-center justify-content-between mb-4">
+<<<<<<< HEAD
                                 <h6 class="mb-0">Freelancers per Client</h6>
                                 <a href="">Show All</a>
                             </div>
                             <canvas id="salse-revenue" height="100" width="100"></canvas>
+=======
+                                <h6 class="mb-0">Salse & Revenue</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <canvas id="salse-revenue"></canvas>
+>>>>>>> origin/master
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Sales Chart End -->
+<<<<<<< HEAD
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -148,6 +184,9 @@
     height: 50
   });
 </script>
+=======
+
+>>>>>>> origin/master
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
@@ -173,8 +212,11 @@
                 <th scope="col">Num_tel</th>
                 <th scope="col">Role</th>
                 <th scope="col">Adresse</th>
+<<<<<<< HEAD
                  <th scope="col">Banned</th>
                 <th scope="col">Verified</th>
+=======
+>>>>>>> origin/master
                 <th scope="col">actions</th>
                                 </tr>
                             </thead>
@@ -191,12 +233,16 @@
                 <td>{{ utilisateur.numTel }}</td>
                 <td>{{ utilisateur.role }}</td>
                 <td>{{ utilisateur.adresse }}</td>
+<<<<<<< HEAD
                  <td>{% if utilisateur.isBanned == 1 %}<span class="badge bg-danger">Yes{% else %}<span class="badge bg-success">No{% endif %}</td>
                     <td>{% if utilisateur.IsVerified == 1 %}<span class="badge bg-success">Yes{% else %}<span class="badge bg-danger">No{% endif %}</td>
+=======
+>>>>>>> origin/master
               
                 <td>
                     <a class="btn btn-sm btn-primary" href="{{ path('app_utilisateur_show', {'id': utilisateur.id}) }}">show</a>
                     <a class="btn btn-sm btn-primary" href="{{ path('app_utilisateur_edit', {'id': utilisateur.id}) }}">edit</a>
+<<<<<<< HEAD
                     <hr>
                   {% if utilisateur.isBanned == 0 %}
     <a href="{{ path('app_user_ban', {'id': utilisateur.id}) }}" class="btn btn-danger btn-sm rounded-pill py-1 px-3"
@@ -211,6 +257,8 @@
         <i class="fas fa-ban mr-2"></i>Unban User
     </a>
 {% endif %}
+=======
+>>>>>>> origin/master
                 </td>
             </tr>
         {% else %}

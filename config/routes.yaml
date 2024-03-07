@@ -33,8 +33,15 @@ front_route:
     controller: App\Controller\FrontController::index
 baseB_route:
     path: /baseB
+<<<<<<< HEAD
     controller: App\Controller\BaseBController::index     
 app_search:
     path: /offre/search
     controller: App\Controller\OffreController::search
     methods: ['GET', 'POST']    
+=======
+    controller: App\Controller\BaseBController::index         
+app_sendEmail:
+    path: '/send-email'
+    controller: App\Controller\CoursbController::sendEmail
+>>>>>>> origin/master

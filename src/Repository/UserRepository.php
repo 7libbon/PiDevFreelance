@@ -38,6 +38,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
     }
+<<<<<<< HEAD
     public function search($value): array
     {
         return $this->createQueryBuilder('u')
@@ -47,6 +48,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getResult();
     }
+=======
+
+>>>>>>> origin/master
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
