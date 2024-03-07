@@ -1,0 +1,118 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+#index:
+#    path: /
+#    controller: App\Controller\BaseFController::index
+
+front_ico:
+    path: /favicon.ico
+    controller: App\Controller\FrontController::index
+front_bg:
+    path: /front/images/header-bg.png
+    controller: App\Controller\FrontController::index
+front_bgg:
+    path: /front/images/slide-01.jpg
+    controller: App\Controller\FrontController::index    
+front_bootstrap_map:
+    path: /front/vendor/bootstrap/css/bootstrap.min.css.map
+    controller: App\Controller\FrontController::index
+front_jquery:
+    path: /front/js/jquery.min.map
+    controller: App\Controller\FrontController::index
+
+front_js_map:
+    path: /front/js/swiper.min.js.map
+    controller: App\Controller\FrontController::index
+    
+back_route:
+    path: /back
+    controller: App\Controller\BackController::index
+baseF_route:
+    path: /baseF
+    controller: App\Controller\BaseFController::index  
+front_route:
+    path: /front
+    controller: App\Controller\FrontController::index
+baseB_route:
+    path: /baseB
+    controller: App\Controller\BaseBController::index   
+back_ico:
+    path: /back/img/favicon.ico          
+    controller: App\Controller\BackController::index
+back_offre_index:
+    path: /offre/indexB
+    controller: App\Controller\OffreController::indexB
+    methods: ['GET', 'POST']
+base_img_route:
+    path: /baseF
+    controller: App\Controller\BaseFController::index
+app_offre_new:
+    path: /new/{userId}
+    controller: App\Controller\OffreController::create
+    methods: ['GET', 'POST']  # Allow both GET and POST requests
+app_offre_show:
+    path: /view/{userId}
+    controller: App\Controller\OffreController::userOffers
+    methods: ['GET', 'POST']
+app_offre_delete:
+    path: /delete/{userId}/{id}
+    controller: App\Controller\OffreController::delete
+    methods: ['GET', 'POST']
+app_offre_edit:
+    path: /edit/{id}/{userId}
+    controller: App\Controller\OffreController::edit
+    methods: ['GET', 'POST']
+app_offre_newB:
+    path: back/new
+    controller: App\Controller\OffreController::newB
+    methods: ['GET', 'POST']
+app_offre_editB:
+    path: back/edit/{id}
+    controller: App\Controller\OffreController::editB
+app_demande_new:
+    path: /demande/new/{userId}/{id}
+    controller: App\Controller\DemandeController::create 
+    methods: ['GET', 'POST']
+app_demande_show:
+    path: /demande/view/{id}/{userId}
+    controller: App\Controller\DemandeController::userDemandes            
+    methods: ['GET', 'POST']
+app_demande_delete:
+    path: /deleteD/{userId}/{id}
+    controller: App\Controller\DemandeController::delete
+    methods: ['GET', 'POST']  
+app_demande_edit:
+    path: /editD/{id}/{userId}
+    controller: App\Controller\DemandeController::edit
+    methods: ['GET', 'POST']   
+app_demande_showB:
+    path: /{id}
+    controller: App\Controller\DemandeController::show             
+    methods: ['GET', 'POST'] 
+app_demande_deleteB:
+    path: /deleteDB/{id}  
+    controller: App\Controller\DemandeController::deleteB
+    methods: ['GET', 'POST'] 
+app_demande_editB:
+    path: /editDB/{id}
+    controller: App\Controller\DemandeController::editB
+    methods: ['GET', 'POST'] 
+app_demande_newB:
+    path: /newB/{id}
+    controller: App\Controller\DemandeController::newB 
+    methods: ['GET', 'POST']
+fetch_offer_details:
+    path: /offer/details/{id}
+    controller: App\Controller\OffreController::fetchOfferDetails
+    methods: ['GET', 'POST']
+app_search:
+    path: /offre/search
+    controller: App\Controller\OffreController::search
+    methods: ['GET', 'POST']
+
+    
+
+
+
+    
